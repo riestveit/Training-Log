@@ -1,0 +1,1045 @@
+[
+{
+"date": "2026-06-29",
+"sleep": 8.95,
+"notes": "Still Wedding injury"
+},
+{
+"date": "2026-06-30",
+"sleep": 7.95,
+"bike_min": 9.0,
+"bike_mi": 1.37,
+"bike_vert": 28.0,
+"notes": "Still Wedding injury"
+},
+{
+"date": "2026-07-01",
+"sleep": 9.5,
+"notes": "Still Wedding injury"
+},
+{
+"date": "2026-07-02",
+"sleep": 8.667,
+"bike_min": 17.0,
+"bike_mi": 3.6,
+"bike_vert": 138.0,
+"notes": "Still Wedding injury"
+},
+{
+"date": "2026-07-03",
+"sleep": 9.433,
+"other_min": 105.0,
+"notes": "Rave w/ data"
+},
+{
+"date": "2026-07-04",
+"sleep": 7.767
+},
+{
+"date": "2026-07-05",
+"sleep": 7.567
+},
+{
+"date": "2026-07-06",
+"sleep": 9.467
+},
+{
+"date": "2026-07-07",
+"sleep": 8.417,
+"bike_min": 34.0,
+"bike_mi": 9.5,
+"bike_vert": 280.0
+},
+{
+"date": "2026-07-08",
+"sleep": 8.2,
+"run_min": 36.0,
+"run_mi": 4.48,
+"run_vert": 141.0,
+"bike_min": 71.0,
+"bike_mi": 13.3,
+"bike_vert": 446.0,
+"sessions": 2.0,
+"notes": "Coming back knee is good"
+},
+{
+"date": "2026-07-09",
+"sleep": 7.117,
+"run_min": 43.0,
+"run_mi": 4.3,
+"run_vert": 2012.0,
+"bike_min": 77.0,
+"bike_mi": 14.86,
+"bike_vert": 328.0,
+"sessions": 2.0
+},
+{
+"date": "2026-07-10",
+"sleep": 7.75,
+"run_min": 55.0,
+"run_mi": 6.1,
+"run_vert": 775.0,
+"bike_min": 152.0,
+"bike_mi": 19.9,
+"bike_vert": 1200.0,
+"sessions": 2.0,
+"notes": "weird, belt bad"
+},
+{
+"date": "2026-07-11",
+"sleep": 7.0,
+"run_min": 90.0,
+"run_mi": 6.5,
+"run_vert": 2110.0,
+"notes": "Felt awful"
+},
+{
+"date": "2026-07-12",
+"sleep": 11.417,
+"run_min": 43.0,
+"run_mi": 5.4,
+"run_vert": 285.0,
+"notes": "Strange, good legs, bad physical head"
+},
+{
+"date": "2026-07-13",
+"sleep": 6.75,
+"run_min": 15.0,
+"run_mi": 2.0,
+"run_vert": 6.0,
+"bike_min": 80.0,
+"bike_mi": 20.0,
+"bike_vert": 1880.0,
+"sessions": 2.0,
+"notes": "Awful run I bailed, chill pm bike"
+},
+{
+"date": "2026-07-14",
+"sleep": 7.033,
+"run_min": 65.0,
+"run_mi": 8.0,
+"run_vert": 561.0
+},
+{
+"date": "2026-07-15",
+"sleep": 8.25,
+"bike_min": 71.0,
+"bike_mi": 17.9,
+"bike_vert": 700.0,
+"other_min": 40.0,
+"sessions": 2.0,
+"notes": "Bike, then 2 hr night hike"
+},
+{
+"date": "2026-07-16",
+"sleep": 7.633,
+"run_min": 51.0,
+"run_mi": 6.1,
+"run_vert": 791.0
+},
+{
+"date": "2026-07-17",
+"sleep": 7.967
+},
+{
+"date": "2026-07-18",
+"sleep": 7.133,
+"run_min": 230.0,
+"run_mi": 23.5,
+"run_vert": 3770.0,
+"workout": 1.0,
+"notes": "Crow pass crossing race, 3rd."
+},
+{
+"date": "2026-07-19",
+"sleep": 8.7,
+"bike_min": 130.0,
+"bike_mi": 24.0,
+"bike_vert": 958.0,
+"notes": "So incredibly sore literally everywhere. Can only hobble but can bike"
+},
+{
+"date": "2026-07-20",
+"sleep": 8.933,
+"other_min": 45.0,
+"notes": "Sore, campbell float with run"
+},
+{
+"date": "2026-07-21",
+"sleep": 6.717,
+"run_min": 36.0,
+"run_mi": 4.32,
+"run_vert": 43.0,
+"notes": "Aniak run, Felt awful"
+},
+{
+"date": "2026-07-22",
+"sleep": 8.833,
+"run_min": 27.0,
+"run_mi": 3.19,
+"run_vert": 115.0,
+"bike_min": 70.0,
+"notes": "meh run then first zwift"
+},
+{
+"date": "2026-07-23",
+"sleep": 6.433,
+"run_min": 10.0,
+"run_mi": 0.9,
+"run_vert": 20.0,
+"bike_min": 50.0,
+"bike_mi": 9.77,
+"bike_vert": 226.0
+},
+{
+"date": "2026-07-24",
+"sleep": 8.233,
+"run_min": 93.0,
+"run_mi": 9.6,
+"run_vert": 989.0,
+"bike_min": 90.0,
+"bike_mi": 14.95,
+"bike_vert": 1184.0,
+"notes": "rooled the fuck out of my ankle and my knees hurt so bad i walked, quad too tight i think"
+},
+{
+"date": "2026-07-25",
+"sleep": 6.25
+},
+{
+"date": "2026-07-26",
+"sleep": 9.433
+},
+{
+"date": "2026-07-27",
+"sleep": 7.3
+},
+{
+"date": "2026-07-28",
+"sleep": 7.8,
+"run_min": 26.0,
+"run_mi": 3.1,
+"run_vert": 13.0
+},
+{
+"date": "2026-07-29",
+"sleep": 7.15,
+"run_min": 74.0,
+"run_mi": 9.66,
+"run_vert": 59.0
+},
+{
+"date": "2026-07-30",
+"sleep": 7.083,
+"run_min": 78.0,
+"run_mi": 7.9,
+"run_vert": 1532.0
+},
+{
+"date": "2026-07-31",
+"sleep": 6.967
+},
+{
+"date": "2026-08-01",
+"sleep": 9.2,
+"run_min": 120.0,
+"run_mi": 6.94,
+"run_vert": 3042.0
+},
+{
+"date": "2026-08-02",
+"sleep": 10.5,
+"bike_min": 28.0,
+"bike_mi": 6.6,
+"bike_vert": 167.0
+},
+{
+"date": "2026-08-03",
+"sleep": 4.833,
+"run_min": 17.0,
+"run_mi": 2.14,
+"run_vert": 226.0,
+"bike_min": 65.0,
+"bike_mi": 12.0,
+"bike_vert": 625.0
+},
+{
+"date": "2026-08-04",
+"sleep": 8.583
+},
+{
+"date": "2026-08-05",
+"sleep": 7.867
+},
+{
+"date": "2026-08-06",
+"sleep": 7.5
+},
+{
+"date": "2026-08-07",
+"sleep": 5.917,
+"other_min": 90.0,
+"notes": "Backpacking"
+},
+{
+"date": "2026-08-08",
+"sleep": 7.083,
+"other_min": 110.0,
+"notes": "Backpacking & Koots"
+},
+{
+"date": "2026-08-09",
+"sleep": 6.2
+},
+{
+"date": "2026-08-10",
+"sleep": 7.783,
+"run_min": 57.0,
+"run_mi": 7.14,
+"run_vert": 1316.0
+},
+{
+"date": "2026-08-11",
+"sleep": 6.967,
+"run_min": 32.0,
+"run_mi": 2.5,
+"run_vert": 715.0
+},
+{
+"date": "2026-08-12",
+"sleep": 8.133
+},
+{
+"date": "2026-08-13",
+"sleep": 7.65,
+"run_min": 76.0,
+"run_mi": 8.9,
+"run_vert": 1350.0,
+"workout": 1.0
+},
+{
+"date": "2026-08-14",
+"sleep": 0.5,
+"run_min": 5.0,
+"run_mi": 0.6,
+"run_vert": 45.0
+},
+{
+"date": "2026-08-15",
+"sleep": 7.65
+},
+{
+"date": "2026-08-16",
+"sleep": 8.283,
+"run_min": 150.0,
+"run_mi": 10.7,
+"run_vert": 3250.0
+},
+{
+"date": "2026-08-17",
+"sleep": 7.05,
+"bike_min": 185.0,
+"bike_mi": 54.5,
+"bike_vert": 4511.0
+},
+{
+"date": "2026-08-18",
+"sleep": 7.75
+},
+{
+"date": "2026-08-19",
+"sleep": 6.567,
+"run_min": 39.0,
+"run_mi": 4.2,
+"run_vert": 531.0
+},
+{
+"date": "2026-08-20",
+"sleep": 7.733
+},
+{
+"date": "2026-08-21",
+"sleep": 7.133,
+"run_min": 130.0,
+"run_mi": 10.3,
+"run_vert": 2841.0,
+"bike_min": 45.0,
+"bike_mi": 9.7,
+"bike_vert": 39.0,
+"other_min": 35.0
+},
+{
+"date": "2026-08-22",
+"sleep": 7.417,
+"run_min": 200.0,
+"run_mi": 9.1,
+"run_vert": 4416.0
+},
+{
+"date": "2026-08-23",
+"sleep": 7.867
+},
+{
+"date": "2026-08-24",
+"sleep": 7.767
+},
+{
+"date": "2026-08-25",
+"sleep": 8.15,
+"run_min": 28.0,
+"run_mi": 2.61,
+"run_vert": 384.0,
+"bike_min": 40.0,
+"bike_mi": 10.35,
+"bike_vert": 469.0,
+"sessions": 2.0
+},
+{
+"date": "2026-08-26",
+"sleep": 8.217,
+"run_min": 240.0,
+"run_mi": 13.9,
+"run_vert": 5200.0,
+"notes": "suicides. Chomping at the bit a lil"
+},
+{
+"date": "2026-08-27",
+"sleep": 8.133,
+"run_min": 59.0,
+"run_mi": 8.02,
+"run_vert": 174.0
+},
+{
+"date": "2026-08-28",
+"sleep": 8.15,
+"bike_min": 120.0,
+"bike_mi": 20.57,
+"bike_vert": 1290.0
+},
+{
+"date": "2026-08-29",
+"sleep": 8.233,
+"run_min": 180.0,
+"run_mi": 13.27,
+"run_vert": 4636.0,
+"notes": "8 hour to bomber and lynx bail but in as 3 hr bc avg HR was 98"
+},
+{
+"date": "2026-08-30",
+"sleep": 7.317,
+"run_min": 200.0,
+"run_mi": 12.0,
+"run_vert": 3671.0,
+"notes": "Bridges to ridges"
+},
+{
+"date": "2026-08-31",
+"sleep": 8.9,
+"run_min": 88.0,
+"run_mi": 9.52,
+"run_vert": 715.0
+},
+{
+"date": "2026-09-01",
+"sleep": 8.667,
+"run_min": 47.0,
+"run_mi": 6.1,
+"run_vert": 194.0,
+"bike_min": 122.0,
+"bike_mi": 34.37,
+"bike_vert": 2470.0
+},
+{
+"date": "2026-09-02",
+"sleep": 8.783,
+"run_min": 100.0,
+"run_mi": 7.11,
+"run_vert": 2822.0
+},
+{
+"date": "2026-09-03",
+"sleep": 8.717,
+"bike_min": 149.0,
+"bike_mi": 39.54,
+"bike_vert": 2831.0
+},
+{
+"date": "2026-09-04",
+"sleep": 8.5,
+"bike_min": 50.0,
+"bike_mi": 9.0,
+"bike_vert": 548.0,
+"rpf": 3.0,
+"notes": "Felt yucky, almost sick HRV low bad sleep. Crashed my mtb really hard. Left side is cooked"
+},
+{
+"date": "2026-09-05",
+"sleep": 9.5,
+"rpf": 3.0,
+"notes": "Felt yucky, almost sick HRV even lower bad sleep"
+},
+{
+"date": "2026-09-06",
+"sleep": 9.317,
+"run_min": 47.0,
+"run_mi": 3.84,
+"run_vert": 827.0,
+"rpf": 5.0,
+"notes": "niormal HRV feeling better!"
+},
+{
+"date": "2026-09-07",
+"sleep": 6.8,
+"run_min": 77.0,
+"run_mi": 8.33,
+"run_vert": 377.0,
+"bike_min": 30.0,
+"bike_mi": 8.93,
+"bike_vert": 348.0,
+"tl": 133.0,
+"rpf": 8.0,
+"notes": "1 hour bike with Lily Run: 50 w/ Ari, 22 with team"
+},
+{
+"date": "2026-09-08",
+"sleep": 9.95,
+"run_min": 23.0,
+"run_mi": 2.5,
+"run_vert": 350.0,
+"bike_min": 39.0,
+"bike_mi": 9.5,
+"bike_vert": 225.0,
+"other_min": 110.0,
+"tl": 267.0,
+"rpf": 6.0,
+"notes": "Run to soccer, soccer, bike to frisbee, frisbee, bike home"
+},
+{
+"date": "2026-09-09",
+"sleep": 6.45,
+"tl": 4.0,
+"rpf": 5.0
+},
+{
+"date": "2026-09-10",
+"sleep": 8.3,
+"run_min": 478.0,
+"run_mi": 19.27,
+"run_vert": 6434.0,
+"tl": 581.0,
+"rpf": 5.0,
+"notes": "SFER ridge solo big day, no sleep after"
+},
+{
+"date": "2026-09-11",
+"sleep": 3.333,
+"run_min": 20.0,
+"run_mi": 1.45,
+"run_vert": 623.0,
+"bike_min": 180.0,
+"bike_mi": 35.0,
+"bike_vert": 2770.0,
+"tl": 190.0,
+"rpf": 3.0,
+"notes": "Denali Day, no sleep, no real meals"
+},
+{
+"date": "2026-09-12",
+"sleep": 4.8,
+"other_min": 20.0,
+"tl": 93.0,
+"rpf": 6.0,
+"notes": "reco roll and koots"
+},
+{
+"date": "2026-09-13",
+"sleep": 9.15,
+"bike_min": 46.0,
+"bike_mi": 12.75,
+"bike_vert": 430.0,
+"tl": 43.0,
+"rpf": 8.0
+},
+{
+"date": "2026-09-14",
+"sleep": 9.133,
+"rpf": 3.0,
+"notes": "After lots of moving and not sleeping and koots i have a sore throat and big lymph nodes"
+},
+{
+"date": "2026-09-15",
+"sleep": 9.3,
+"other_min": 70.0,
+"tl": 64.0,
+"rpf": 3.0,
+"notes": "kinda sick, 1 hr of soccer HR was diaboliccly high"
+},
+{
+"date": "2026-09-16",
+"sleep": 7.667,
+"notes": "kinda sick"
+},
+{
+"date": "2026-09-17",
+"sleep": 7.833,
+"bike_min": 22.0,
+"bike_mi": 5.35,
+"bike_vert": 217.0,
+"other_min": 61.0,
+"tl": 168.0,
+"notes": "kinda sick, outdoor soccer! 154 avg, 123 low"
+},
+{
+"date": "2026-09-18",
+"sleep": 6.9,
+"run_min": 30.0,
+"run_mi": 3.0,
+"run_vert": 253.0,
+"bike_min": 25.0,
+"bike_mi": 6.37,
+"bike_vert": 135.0,
+"tl": 75.0,
+"notes": "kinda sick, RJ run golf"
+},
+{
+"date": "2026-09-19",
+"sleep": 7.483,
+"bike_min": 35.0,
+"bike_mi": 8.0,
+"bike_vert": 417.0,
+"tl": 60.0,
+"notes": "kinda sick"
+},
+{
+"date": "2026-09-20",
+"sleep": 6.45,
+"run_min": 132.0,
+"run_mi": 9.35,
+"run_vert": 3461.0,
+"tl": 120.0,
+"notes": "cant belive im still kinda sick"
+},
+{
+"date": "2026-09-21",
+"sleep": 7.683,
+"bike_min": 50.0,
+"bike_mi": 11.1,
+"bike_vert": 360.0,
+"other_min": 91.0,
+"tl": 168.0,
+"notes": "Sick or sick leftovers idk. bike to soccer, soccer, bike home"
+},
+{
+"date": "2026-09-22",
+"sleep": 8.1,
+"other_min": 72.0,
+"tl": 91.0,
+"notes": "Sick or sick leftovers idk"
+},
+{
+"date": "2026-09-23",
+"sleep": 8.65,
+"notes": "Sick or sick leftovers idk"
+},
+{
+"date": "2026-09-24",
+"sleep": 7.483,
+"bike_min": 75.0,
+"bike_mi": 16.3,
+"bike_vert": 581.0,
+"tl": 21.0,
+"notes": "Sick or sick leftovers idk, bike cruise with lily"
+},
+{
+"date": "2026-09-25",
+"sleep": 9.433,
+"run_min": 75.0,
+"run_mi": 5.6,
+"run_vert": 2520.0,
+"tl": 73.0,
+"notes": "Sick or sick leftovers idk, felt awful"
+},
+{
+"date": "2026-09-26",
+"sleep": 8.65,
+"run_min": 135.0,
+"run_mi": 7.8,
+"run_vert": 722.0,
+"tl": 127.0,
+"notes": "45 holes of frolf with Ari"
+},
+{
+"date": "2026-09-27",
+"sleep": 8.183,
+"bike_min": 49.0,
+"bike_mi": 9.8,
+"bike_vert": 440.0,
+"tl": 40.0
+},
+{
+"date": "2026-09-28",
+"sleep": 8.783,
+"run_min": 53.0,
+"run_mi": 53.0,
+"run_vert": 210.0,
+"bike_min": 30.0,
+"bike_mi": 7.5,
+"bike_vert": 220.0,
+"tl": 113.0,
+"notes": "felt actually alright, got tired fast"
+},
+{
+"date": "2026-09-29",
+"sleep": 8.767,
+"bike_min": 60.0,
+"bike_mi": 14.0,
+"bike_vert": 790.0,
+"tl": 35.0
+},
+{
+"date": "2026-09-30",
+"sleep": 7.717,
+"notes": "felt bad/sick again"
+},
+{
+"date": "2026-10-01",
+"sleep": 9.517,
+"run_min": 34.0,
+"run_mi": 3.5,
+"run_vert": 240.0,
+"tl": 74.0
+},
+{
+"date": "2026-10-02",
+"sleep": 8.083,
+"run_min": 102.0,
+"run_mi": 7.93,
+"run_vert": 2808.0,
+"bike_min": 40.0,
+"bike_mi": 10.5,
+"bike_vert": 200.0,
+"tl": 419.0,
+"notes": "sk8 land"
+},
+{
+"date": "2026-10-03",
+"sleep": 8.05
+},
+{
+"date": "2026-10-04",
+"sleep": 9.517
+},
+{
+"date": "2026-10-05",
+"sleep": 9.0,
+"run_min": 45.0,
+"run_mi": 6.25,
+"run_vert": 125.0,
+"tl": 165.0
+},
+{
+"date": "2026-10-06",
+"sleep": 8.933,
+"run_min": 82.0,
+"run_mi": 10.45,
+"run_vert": 600.0,
+"workout": 1.0,
+"tl": 324.0,
+"notes": "TNR, 5.1 mi redline lungs and calves cooked so fun"
+},
+{
+"date": "2026-10-07",
+"sleep": 7.45,
+"bike_min": 48.0,
+"bike_mi": 13.48,
+"bike_vert": 322.0,
+"tl": 45.0
+},
+{
+"date": "2026-10-08",
+"sleep": 7.5,
+"run_min": 68.0,
+"run_mi": 7.6,
+"run_vert": 1227.0,
+"bike_min": 30.0,
+"bike_mi": 10.77,
+"bike_vert": 410.0,
+"other_min": 67.0,
+"tl": 341.0,
+"notes": "Bike to frisbee and back"
+},
+{
+"date": "2026-10-09",
+"sleep": 8.083,
+"run_min": 55.0,
+"run_mi": 5.5,
+"run_vert": 800.0,
+"tl": 18.0,
+"notes": "Hunting yog"
+},
+{
+"date": "2026-10-10",
+"sleep": 7.65
+},
+{
+"date": "2026-10-11",
+"sleep": 5.283,
+"other_min": 30.0,
+"tl": 41.0,
+"notes": "packraft into wind"
+},
+{
+"date": "2026-10-12",
+"sleep": 9.183,
+"other_min": 30.0,
+"tl": 47.0
+},
+{
+"date": "2026-10-13",
+"sleep": 7.683,
+"run_min": 110.0,
+"run_mi": 11.35,
+"run_vert": 1910.0,
+"sessions": 2.0,
+"tl": 116.0
+},
+{
+"date": "2026-10-14",
+"sleep": 6.967
+},
+{
+"date": "2026-10-15",
+"sleep": 8.45
+},
+{
+"date": "2026-10-16",
+"sleep": 7.117
+},
+{
+"date": "2026-10-17",
+"sleep": 8.0
+},
+{
+"date": "2026-10-18",
+"sleep": 8.0
+},
+{
+"date": "2026-10-19",
+"sleep": 8.367,
+"run_min": 185.0,
+"run_mi": 14.66,
+"run_vert": 3970.0,
+"tl": 527.0,
+"notes": "up to 9.4k after a week of drinking"
+},
+{
+"date": "2026-10-20",
+"sleep": 8.6,
+"tl": 6.0
+},
+{
+"date": "2026-10-21",
+"sleep": 5.667,
+"run_min": 8.0,
+"run_mi": 1.0,
+"run_vert": 100.0,
+"tl": 13.0
+},
+{
+"date": "2026-10-22",
+"sleep": 7.733,
+"run_min": 91.0,
+"run_mi": 9.38,
+"run_vert": 1570.0,
+"tl": 298.0
+},
+{
+"date": "2026-10-23",
+"sleep": 7.767,
+"nordic_min": 87.0,
+"nordic_mi": 7.51,
+"nordic_vert": 607.0,
+"tl": 120.0
+},
+{
+"date": "2026-10-24",
+"sleep": 9.2,
+"run_min": 64.0,
+"run_mi": 4.31,
+"run_vert": 400.0,
+"tl": 82.0
+},
+{
+"date": "2026-10-25",
+"sleep": 7.9,
+"run_min": 46.0,
+"run_mi": 4.7,
+"run_vert": 417.0,
+"tl": 73.0
+},
+{
+"date": "2026-10-26",
+"sleep": 8.167,
+"run_min": 67.0,
+"run_mi": 6.32,
+"run_vert": 699.0,
+"tl": 106.0
+},
+{
+"date": "2026-10-27",
+"sleep": 2.883
+},
+{
+"date": "2026-10-28",
+"sleep": 10.433,
+"nordic_min": 64.0,
+"nordic_mi": 7.2,
+"nordic_vert": 870.0,
+"tl": 116.0
+},
+{
+"date": "2026-10-29",
+"sleep": 6.967,
+"run_min": 31.0,
+"run_mi": 3.73,
+"run_vert": 341.0,
+"tl": 80.0
+},
+{
+"date": "2026-10-30",
+"sleep": 5.917,
+"run_min": 78.0,
+"run_mi": 7.95,
+"run_vert": 1538.0,
+"bike_min": 63.0,
+"bike_mi": 16.0,
+"bike_vert": 1200.0,
+"tl": 273.0
+},
+{
+"date": "2026-10-31",
+"sleep": 7.267,
+"bc_min": 110.0,
+"bc_mi": 4.44,
+"bc_vert": 1949.0,
+"tl": 113.0
+},
+{
+"date": "2026-11-01",
+"sleep": 9.667,
+"run_min": 92.0,
+"run_mi": 9.0,
+"run_vert": 2782.0,
+"tl": 479.0
+},
+{
+"date": "2026-11-02",
+"sleep": 7.95,
+"run_min": 69.0,
+"run_mi": 7.92,
+"run_vert": 1122.0,
+"tl": 212.0,
+"notes": "Chomping at the bit, almost ran twice, then broke up with Lily ;("
+},
+{
+"date": "2026-11-03",
+"sleep": 8.183,
+"run_min": 30.0,
+"run_mi": 3.2,
+"run_vert": 125.0,
+"bike_min": 22.0,
+"bike_mi": 6.6,
+"bike_vert": 400.0,
+"other_min": 45.0,
+"tl": 137.0
+},
+{
+"date": "2026-11-04",
+"sleep": 7.733,
+"run_min": 87.0,
+"run_mi": 10.52,
+"run_vert": 295.0,
+"sessions": 2.0,
+"tl": 161.0
+},
+{
+"date": "2026-11-05",
+"sleep": 8.05
+},
+{
+"date": "2026-11-06",
+"sleep": 5.417,
+"run_min": 66.0,
+"run_mi": 5.86,
+"run_vert": 1804.0,
+"other_min": 20.0,
+"sessions": 2.0,
+"workout": 1.0,
+"tl": 307.0,
+"notes": "2+ hr ice skate, not very areobic, all out butte climb: 11 mins 780ft"
+},
+{
+"date": "2026-11-07",
+"sleep": 7.033,
+"bc_min": 60.0,
+"bc_mi": 4.05,
+"bc_vert": 1827.0,
+"tl": 107.0
+},
+{
+"date": "2026-11-08",
+"sleep": 8.333,
+"run_min": 37.0,
+"run_mi": 4.25,
+"run_vert": 333.0,
+"other_min": 45.0,
+"tl": 150.0
+},
+{
+"date": "2026-11-09",
+"sleep": 6.55,
+"other_min": 45.0,
+"tl": 70.0
+},
+{
+"date": "2026-11-10",
+"sleep": 8.15,
+"run_min": 57.0,
+"run_mi": 6.4,
+"run_vert": 1014.0,
+"tl": 159.0
+},
+{
+"date": "2026-11-11",
+"sleep": 7.883,
+"bike_min": 60.0,
+"bike_mi": 15.8,
+"tl": 62.0
+},
+{
+"date": "2026-11-12",
+"sleep": 8.083,
+"run_min": 101.0,
+"run_mi": 12.38,
+"run_vert": 413.0,
+"sessions": 2.0
+},
+{
+"date": "2026-11-13",
+"sleep": 8.05,
+"other_min": 210.0,
+"notes": "ice skated 30 miles"
+},
+{
+"date": "2026-11-14",
+"sleep": 7.333,
+"other_min": 272.0,
+"notes": "ice skated 50 miles idgaf"
+},
+{
+"date": "2026-11-15",
+"sleep": 10.0,
+"bc_min": 164.0,
+"notes": "5 laps of AV"
+}
+]

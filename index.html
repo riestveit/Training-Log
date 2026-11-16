@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basecamp · Training Log</title>
+<meta name="theme-color" content="#0e0f0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 27 12 9l5 8 4-5 9 15z' fill='%233987e5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topo" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M2 27 12 9l5 8 4-5 9 15z" fill="#3987e5"/><path d="M12 9l3 5-3-1-2 2z" fill="#f0efec"/></svg>
+    <div>
+      <div class="brand-name">BASECAMP</div>
+      <div class="brand-sub" id="brandSub">training log</div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs" role="tablist">
+    <button data-tab="dash" class="on">Dashboard</button>
+    <button data-tab="run">Running</button>
+    <button data-tab="load">Load</button>
+    <button data-tab="recovery">Recovery</button>
+    <button data-tab="calendar">Calendar</button>
+    <button data-tab="journal">Journal</button>
+    <button data-tab="entry" class="cta">+ Log day</button>
+    <button data-tab="data">Data</button>
+  </nav>
+</header>
+
+<div class="filters" id="filters">
+  <div class="seg" id="rangeSeg">
+    <button data-r="30">30D</button>
+    <button data-r="90">90D</button>
+    <button data-r="182">6M</button>
+    <button data-r="ytd">YTD</button>
+    <button data-r="all" class="on">ALL</button>
+  </div>
+  <div class="chips" id="sportChips"></div>
+  <div class="spacer"></div>
+  <div class="dirty" id="dirtyFlag" hidden>● unsynced edits</div>
+</div>
+
+<main>
+  <!-- DASHBOARD -->
+  <section class="tab on" id="tab-dash">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid g-3-1">
+      <div class="card">
+        <div class="card-h"><h2>Weekly volume</h2><span class="sub">hours by sport</span></div>
+        <div class="legend" data-legend="sports"></div>
+        <div class="chart" id="c-weekly" data-h="300"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>This week</h2><span class="sub" id="weekLabel"></span></div>
+        <div id="weekRing" class="ring-wrap"></div>
+        <div id="weekDays" class="weekdays"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>Every day</h2><span class="sub">training hours · darker = bigger day</span></div>
+      <div class="chart heat" id="c-heat"></div>
+    </div>
+    <div class="grid g-1-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Sport mix</h2><span class="sub">share of hours</span></div>
+        <div class="chart" id="c-donut" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Cumulative distance</h2><span class="sub">miles</span></div>
+        <div class="chart" id="c-cumMi" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Cumulative vert</h2><span class="sub">feet climbed</span></div>
+        <div class="chart" id="c-cumVert" data-h="240"></div>
+      </div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Monthly totals</h2><span class="sub">hours by sport</span></div>
+        <div class="legend" data-legend="sports"></div>
+        <div class="chart" id="c-monthly" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Personal records</h2><span class="sub">in selected range</span></div>
+        <div class="prs" id="prs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUNNING -->
+  <section class="tab" id="tab-run">
+    <div class="kpis" id="runKpis"></div>
+    <div class="card">
+      <div class="card-h"><h2>Weekly running · flat conversion</h2><span class="sub">miles + vert-equivalent miles (528 ft = 1 mi) · total labelled</span></div>
+      <div class="legend" id="runLegend"></div>
+      <div class="chart" id="c-runWeekly" data-h="300"></div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Weekly running vert</h2><span class="sub">feet</span></div>
+        <div class="chart" id="c-runVert" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Long run progression</h2><span class="sub">longest run each week · miles</span></div>
+        <div class="chart" id="c-longRun" data-h="240"></div>
+      </div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Steepness vs pace</h2><span class="sub">every run · bubble size = duration</span></div>
+        <div class="chart" id="c-runScatter" data-h="300"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Run distance spread</h2><span class="sub">number of runs per distance bucket</span></div>
+        <div class="chart" id="c-runHist" data-h="300"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>Biggest days on foot</h2><span class="sub">ranked by flat conversion</span></div>
+      <div class="table-wrap" id="runTop"></div>
+    </div>
+  </section>
+
+  <!-- LOAD -->
+  <section class="tab" id="tab-load">
+    <div class="kpis" id="loadKpis"></div>
+    <div class="card">
+      <div class="card-h"><h2>Fitness · Fatigue · Form</h2>
+        <span class="sub">42-day vs 7-day weighted load</span>
+        <div class="seg sm" id="loadSrc"><button data-l="min" class="on">Minutes</button><button data-l="tl">TL</button></div>
+      </div>
+      <div class="legend" id="pmcLegend"></div>
+      <div class="chart" id="c-pmc" data-h="320"></div>
+      <p class="hint">Fitness = long-term average load. Fatigue = recent load. Form = fitness − fatigue: negative means you're carrying fatigue, positive means fresh. "TL" uses your logged training load (only logged since September).</p>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Acute : chronic ratio</h2><span class="sub">7-day load ÷ 28-day avg · 0.8–1.3 band shaded</span></div>
+        <div class="chart" id="c-acwr" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Daily load</h2><span class="sub" id="dailyLoadSub">minutes</span></div>
+        <div class="chart" id="c-dailyLoad" data-h="240"></div>
+      </div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Week-over-week ramp</h2><span class="sub">% change in weekly hours</span></div>
+        <div class="chart" id="c-ramp" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Training by weekday</h2><span class="sub">average hours</span></div>
+        <div class="legend" data-legend="sports"></div>
+        <div class="chart" id="c-dow" data-h="240"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOVERY -->
+  <section class="tab" id="tab-recovery">
+    <div class="kpis" id="recKpis"></div>
+    <div class="card">
+      <div class="card-h"><h2>Sleep</h2><span class="sub">nightly hours · 7-night average line · 8 h target</span></div>
+      <div class="chart" id="c-sleep" data-h="280"></div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Sleep distribution</h2><span class="sub">nights per bucket</span></div>
+        <div class="chart" id="c-sleepHist" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Sleep vs training</h2><span class="sub">each day · does a big day follow good sleep?</span></div>
+        <div class="chart" id="c-sleepScatter" data-h="240"></div>
+      </div>
+    </div>
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Feel (RPF)</h2><span class="sub">logged 1–10</span></div>
+        <div class="chart" id="c-rpf" data-h="240"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Rest &amp; streaks</h2><span class="sub">active vs rest days per week</span></div>
+        <div class="chart" id="c-rest" data-h="240"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="tab" id="tab-calendar">
+    <div class="card">
+      <div class="cal-h">
+        <button class="btn ghost" id="calPrev">‹</button>
+        <h2 id="calTitle"></h2>
+        <button class="btn ghost" id="calNext">›</button>
+        <div class="spacer"></div>
+        <div class="legend" data-legend="sports"></div>
+      </div>
+      <div class="cal" id="cal"></div>
+      <div class="cal-foot" id="calFoot"></div>
+    </div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section class="tab" id="tab-journal">
+    <div class="card">
+      <div class="card-h"><h2>Journal</h2><span class="sub" id="jCount"></span>
+        <input type="search" id="jSearch" placeholder="Search notes… (e.g. sick, race, knee)">
+      </div>
+      <div id="journal" class="journal"></div>
+    </div>
+  </section>
+
+  <!-- ENTRY -->
+  <section class="tab" id="tab-entry">
+    <form class="card entry" id="entryForm" autocomplete="off">
+      <div class="entry-h">
+        <button type="button" class="btn ghost" id="ePrev" title="Previous day">‹</button>
+        <input type="date" id="eDate" required>
+        <button type="button" class="btn ghost" id="eNext" title="Next day">›</button>
+        <span class="pill" id="eStatus"></span>
+        <div class="spacer"></div>
+        <button type="button" class="btn ghost" id="eToday">Today</button>
+      </div>
+
+      <div class="entry-grid">
+        <fieldset class="f-sleep">
+          <legend>Sleep</legend>
+          <div class="row">
+            <label>Hours<input type="number" id="eSleepH" min="0" max="24" step="1" inputmode="numeric"></label>
+            <label>Minutes<input type="number" id="eSleepM" min="0" max="59" step="1" inputmode="numeric"></label>
+          </div>
+          <label class="rpf">Feel (RPF) <output id="eRpfOut">—</output>
+            <input type="range" id="eRpf" min="0" max="10" step="1" value="0">
+            <span class="hint">0 = not logged</span>
+          </label>
+        </fieldset>
+        <div id="sportFields" class="sport-fields"></div>
+        <fieldset>
+          <legend>Extras</legend>
+          <div class="row">
+            <label>Other min<input type="number" id="eOther" min="0" step="1" inputmode="numeric"></label>
+            <label>Sessions<input type="number" id="eSessions" min="0" step="1" inputmode="numeric"></label>
+          </div>
+          <div class="row">
+            <label>Workout<input type="number" id="eWorkout" min="0" step="1" inputmode="numeric"></label>
+            <label>TL<input type="number" id="eTl" min="0" step="1" inputmode="numeric"></label>
+          </div>
+        </fieldset>
+        <fieldset class="f-notes">
+          <legend>Notes</legend>
+          <textarea id="eNotes" rows="5" placeholder="How did it feel? Where'd you go?"></textarea>
+        </fieldset>
+      </div>
+
+      <div class="entry-live" id="eLive"></div>
+
+      <div class="entry-actions">
+        <button type="submit" class="btn primary">Save day</button>
+        <button type="button" class="btn" id="eSaveNext">Save &amp; next day</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn danger" id="eDelete">Clear day</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- DATA -->
+  <section class="tab" id="tab-data">
+    <div class="grid g-1-1">
+      <div class="card">
+        <div class="card-h"><h2>Sync to GitHub</h2><span class="sub">save edits back into your repo</span></div>
+        <p class="hint">Edits are saved in this browser immediately. Push commits <code>data/training.json</code> to your repo so every device sees them. Needs a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained token</a> with <b>Contents: read &amp; write</b> on this repo only. The token stays in this browser's local storage.</p>
+        <div class="form-grid">
+          <label>Owner<input id="ghOwner" placeholder="your-github-username"></label>
+          <label>Repo<input id="ghRepo" placeholder="training-log"></label>
+          <label>Branch<input id="ghBranch" placeholder="main"></label>
+          <label>Path<input id="ghPath" placeholder="data/training.json"></label>
+          <label class="span2">Token<input id="ghToken" type="password" placeholder="github_pat_…"></label>
+        </div>
+        <div class="entry-actions">
+          <button class="btn primary" id="ghPush">Push to GitHub</button>
+          <button class="btn" id="ghPull">Pull from GitHub</button>
+          <div class="spacer"></div>
+          <span class="pill" id="ghStatus"></span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Import / export</h2></div>
+        <div class="stack">
+          <div class="entry-actions">
+            <button class="btn" id="expJson">Export JSON</button>
+            <button class="btn" id="expCsv">Export CSV</button>
+          </div>
+          <label class="drop" id="drop">
+            <input type="file" id="impFile" accept=".json,.csv" hidden>
+            <b>Import JSON or CSV</b><span>drop a file or click · merges by date (imported days win)</span>
+          </label>
+          <div class="entry-actions">
+            <button class="btn danger" id="resetRepo">Discard local edits · reload repo data</button>
+          </div>
+        </div>
+        <div class="card-h" style="margin-top:18px"><h2>Goals</h2></div>
+        <div class="form-grid">
+          <label>Weekly hours goal<input id="goalHours" type="number" min="1" step="0.5"></label>
+          <label>Weekly run miles goal<input id="goalMiles" type="number" min="1" step="1"></label>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>All days</h2><span class="sub">table view · click a row to edit</span></div>
+      <div class="table-wrap tall" id="allTable"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">Basecamp · your data lives in <code>data/training.json</code> · <span id="footInfo"></span></footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
