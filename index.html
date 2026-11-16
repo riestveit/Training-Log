@@ -61,6 +61,16 @@
       </div>
     </div>
     <div class="card">
+      <div class="card-h"><h2>Rolling 7-day</h2><span class="sub">every day = total of the 7 days ending that day · no Monday cutoff</span>
+        <div class="seg sm" id="rollMetric">
+          <button data-m="hours" class="on">Hours</button><button data-m="run">Run mi</button><button data-m="fc">Flat conv.</button><button data-m="vert">Vert</button><button data-m="sleep">Sleep</button>
+        </div>
+      </div>
+      <div class="legend" id="rollLegend"></div>
+      <div class="chart" id="c-roll" data-h="300"></div>
+      <div class="roll-stats" id="rollStats"></div>
+    </div>
+    <div class="card">
       <div class="card-h"><h2>Every day</h2><span class="sub">training hours · darker = bigger day</span></div>
       <div class="chart heat" id="c-heat"></div>
     </div>

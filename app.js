@@ -22,6 +22,7 @@ const state = {
   range: 'all',
   sports: new Set(SPORTS.map(s => s.key)),
   loadSrc: 'min',
+  rollMetric: 'hours',
   tab: 'dash',
   calMonth: null,
   goals: Object.assign({ hours: 10, miles: 30 }, readLS(LS.goals) || {}),
@@ -505,6 +506,7 @@ function renderDash() {
     onClick: i => { state.calMonth = new Date(wk[i].start); switchTab('calendar'); },
   });
 
+  renderRolling();
   heatmap($('#c-heat'), days);
 
   const mix = sportList.map(s => ({ label: s.label, color: s.color, val: sum(days.map(r => sportMin(r, s.key) / 60)) })).filter(i => i.val > 0);
@@ -547,6 +549,71 @@ function renderDash() {
   $$('#prs .pr[data-date]').forEach(p => p.onclick = () => openEntry(p.dataset.date));
 
   renderThisWeek();
+}
+
+// Rolling 7-day window: computed on full history so the first days of a range aren't starved
+function renderRolling() {
+  const host = $('#c-roll');
+  if (!state.days.length) { emptyMsg(frame(host)); return; }
+  const [s, e] = rangeBounds();
+  const all = series(D(state.days[0].date), e);
+  const M = {
+    hours: { f: r => dayMin(r) / 60, unit: 'h', fmt: n1, goal: +state.goals.hours, word: 'hours' },
+    run:   { f: r => g(r, 'run_mi'), unit: 'mi', fmt: n1, goal: +state.goals.miles, word: 'run miles' },
+    fc:    { f: flatConv, unit: 'mi', fmt: n1, goal: 0, word: 'flat-conv. miles' },
+    vert:  { f: r => dayVert(r), unit: 'ft', fmt: n0, goal: 0, word: 'vert ft' },
+    sleep: { f: r => g(r, 'sleep'), unit: 'h', fmt: hm, goal: 56, word: 'sleep hours', avg: true },
+  }[state.rollMetric];
+  const v = all.map(M.f);
+  // sleep: rolling 7-night average per night (skips unlogged nights); everything else: rolling 7-day total
+  const win = (i, n) => v.slice(Math.max(0, i - n + 1), i + 1);
+  const r7 = v.map((_, i) => {
+    if (i < 6) return null;
+    if (M.avg) { const w = win(i, 7).filter(Boolean); return w.length ? mean(w) : null; }
+    return sum(win(i, 7));
+  });
+  const r28 = v.map((_, i) => {
+    if (i < 27) return null;
+    if (M.avg) { const w = win(i, 28).filter(Boolean); return w.length ? mean(w) : null; }
+    return sum(win(i, 28)) / 4; // 28-day total expressed per week
+  });
+  const i0 = all.findIndex(r => D(r.date) >= s);
+  const days = all.slice(i0), a7 = r7.slice(i0), a28 = r28.slice(i0), raw = v.slice(i0);
+  const goal = M.avg ? 8 : M.goal;
+  const lbl7 = M.avg ? '7-night avg' : 'Rolling 7-day total', lbl28 = M.avg ? '28-night avg' : '28-day avg per week';
+  $('#rollLegend').innerHTML = legendHTML([{ label: lbl7, color: SP.run.color, kind: 'line' }, { label: lbl28, color: SP.bc.color, kind: 'line' }]);
+  lines(host, {
+    xs: days.map(r => D(r.date)),
+    series: [
+      { label: lbl7, color: SP.run.color, vals: a7, area: true, width: 2.5 },
+      { label: lbl28, color: SP.bc.color, vals: a28, width: 2 },
+    ],
+    fmt: M.fmt, yfmt: v => M.unit === 'ft' && v >= 1000 ? v / 1000 + 'k' : (M.avg ? v + 'h' : v),
+    yMin: M.avg ? undefined : 0,
+    refs: goal ? [{ y: goal, label: M.avg ? '8h' : `goal ${goal}` }] : [],
+    tipTitle: i => `7 days ending ${fmtDL(D(days[i].date))}`,
+    tipExtra: i => {
+      const j = i0 + i; let h = tipRow('That day', raw[i] ? M.fmt(raw[i]) + ' ' + M.unit : 'rest');
+      const out = j >= 7 ? v[j - 7] : 0;
+      if (!M.avg && j >= 7) h += tipRow('Dropped out of window', out ? M.fmt(out) : '0');
+      if (a7[i] != null && a28[i]) h += `<div class="n">7-day vs 28-day: ${ratio2(a7[i] / a28[i])}</div>`;
+      return h;
+    },
+    onClick: i => openEntry(days[i].date),
+  });
+  // headline stats
+  const valid = a7.map((x, i) => [x, i]).filter(([x]) => x != null);
+  if (!valid.length) { $('#rollStats').innerHTML = ''; return; }
+  const [cur] = valid[valid.length - 1];
+  const wkAgo = a7[a7.length - 8], pk = valid.reduce((b, p) => p[0] > b[0] ? p : b), lo = valid.reduce((b, p) => p[0] < b[0] ? p : b);
+  const chg = wkAgo ? (cur - wkAgo) / wkAgo * 100 : null;
+  const c28 = a28[a28.length - 1];
+  $('#rollStats').innerHTML =
+    `<span><b>${M.fmt(cur)}</b>${M.unit} right now</span>` +
+    (chg != null ? `<span><b class="${chg >= 0 ? 'up' : 'down'}">${chg >= 0 ? '▲' : '▼'} ${Math.abs(chg).toFixed(0)}%</b>vs 7 days ago</span>` : '') +
+    (c28 ? `<span><b>${ratio2(cur / c28)}</b>7-day vs 28-day trend</span>` : '') +
+    `<span><b>${M.fmt(pk[0])}</b>peak · ${fmtD(D(days[pk[1]].date))}</span>` +
+    `<span><b>${M.fmt(lo[0])}</b>low · ${fmtD(D(days[lo[1]].date))}</span>`;
 }
 
 function renderThisWeek() {
@@ -972,6 +1039,7 @@ function bind() {
     $$('#sportChips .chip').forEach(x => x.classList.toggle('off', !state.sports.has(x.dataset.k)));
     renderLegends(); renderAll();
   });
+  $$('#rollMetric button').forEach(b => b.onclick = () => { state.rollMetric = b.dataset.m; $$('#rollMetric button').forEach(x => x.classList.toggle('on', x === b)); renderRolling(); });
   $$('#loadSrc button').forEach(b => b.onclick = () => { state.loadSrc = b.dataset.l; $$('#loadSrc button').forEach(x => x.classList.toggle('on', x === b)); renderLoad(); });
   $('#calPrev').onclick = () => { state.calMonth = new Date(state.calMonth.getFullYear(), state.calMonth.getMonth() - 1, 1, 12); renderCalendar(); };
   $('#calNext').onclick = () => { state.calMonth = new Date(state.calMonth.getFullYear(), state.calMonth.getMonth() + 1, 1, 12); renderCalendar(); };
