@@ -9,12 +9,12 @@ const SPORTS = [
   { key: 'bike',   label: 'Biking',    color: '#d95926', dist: true },
   { key: 'nordic', label: 'Nordic',    color: '#199e70', dist: true },
   { key: 'bc',     label: 'BC Skiing', color: '#c98500', dist: true },
-  { key: 'other',  label: 'Other',     color: '#d55181', dist: false },
+  { key: 'other',  label: 'Other',     color: '#d55181', dist: true },
 ];
 const SP = Object.fromEntries(SPORTS.map(s => [s.key, s]));
 const FT_PER_FLAT_MI = 528;
-const LS = { data: 'basecamp.data.v1', dirty: 'basecamp.dirty', gh: 'basecamp.gh', goals: 'basecamp.goals' };
-const FIELDS = ['sleep','run_min','run_mi','run_vert','bike_min','bike_mi','bike_vert','nordic_min','nordic_mi','nordic_vert','bc_min','bc_mi','bc_vert','other_min','sessions','workout','tl','rpf'];
+const LS = { data: 'basecamp.data.v1', dirty: 'basecamp.dirty', gh: 'basecamp.gh' };
+const FIELDS = ['sleep','run_min','run_mi','run_vert','bike_min','bike_mi','bike_vert','nordic_min','nordic_mi','nordic_vert','bc_min','bc_mi','bc_vert','other_min','other_mi','other_vert','sessions','workout','tl','rpf'];
 const C = { seq: ['#232b36','#184f95','#256abf','#3987e5','#6da7ec','#9ec5f4'], sleep: '#9085e9', good: '#0ca30c', warn: '#c98500', crit: '#e66767', muted: '#8d8c84', text: '#f0efec' };
 
 const state = {
@@ -25,7 +25,6 @@ const state = {
   rollMetric: 'hours',
   tab: 'dash',
   calMonth: null,
-  goals: Object.assign({ hours: 10, miles: 30 }, readLS(LS.goals) || {}),
   gh: Object.assign({ owner: '', repo: '', branch: 'main', path: 'data/training.json', token: '' }, readLS(LS.gh) || {}),
 };
 
@@ -423,7 +422,7 @@ function sparkline(vals, color, w = 70, h = 26) {
   if (vals.length < 2) return '';
   const mx = Math.max(...vals, 1e-9), mn = Math.min(...vals, 0);
   const pts = vals.map((v, i) => `${(i / (vals.length - 1) * w).toFixed(1)},${(h - (v - mn) / (mx - mn || 1) * h).toFixed(1)}`).join(' ');
-  return `<svg class="spark" width="${w}" height="${h}"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/></svg>`;
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" height="${h}"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
 }
 
 // ───────────────────────── analytics ─────────────────────────
@@ -488,6 +487,7 @@ function renderDash() {
   const wkV = wk.map(w => sum(w.days.map(r => dayVert(r))));
   $('#kpis').innerHTML =
     kpiHTML('Training time', n1(hrs), 'h', delta(hrs, pH), sparkline(wkH, SP.run.color)) +
+    kpiHTML('Avg / week', n1(hrs / (days.length / 7 || 1)), 'h', `over ${n1(days.length / 7)} weeks · ${n1(mi / (days.length / 7 || 1))} mi/wk`) +
     kpiHTML('Distance', n0(mi), 'mi', delta(mi, pMi), sparkline(wkMi, SP.bike.color)) +
     kpiHTML('Vert', n0(vert), 'ft', delta(vert, pV), sparkline(wkV, SP.nordic.color)) +
     kpiHTML('Active days', active, `/ ${days.length}`, `${Math.round(active / (days.length || 1) * 100)}% of days`) +
@@ -502,7 +502,6 @@ function renderDash() {
     tipTitle: i => `Week of ${fmtD(wk[i].start)}`,
     tipExtra: i => { const sl = wk[i].days.map(r => g(r, 'sleep')).filter(Boolean); return sl.length ? tipRow('Avg sleep', hm(mean(sl)), C.sleep) : ''; },
     top: i => wkH[i] >= 0.05 && wk.length <= 30 ? n1(wkH[i]) : '',
-    refs: state.goals.hours ? [{ y: +state.goals.hours, label: `goal ${state.goals.hours}h` }] : [],
     onClick: i => { state.calMonth = new Date(wk[i].start); switchTab('calendar'); },
   });
 
@@ -558,11 +557,11 @@ function renderRolling() {
   const [s, e] = rangeBounds();
   const all = series(D(state.days[0].date), e);
   const M = {
-    hours: { f: r => dayMin(r) / 60, unit: 'h', fmt: n1, goal: +state.goals.hours, word: 'hours' },
-    run:   { f: r => g(r, 'run_mi'), unit: 'mi', fmt: n1, goal: +state.goals.miles, word: 'run miles' },
-    fc:    { f: flatConv, unit: 'mi', fmt: n1, goal: 0, word: 'flat-conv. miles' },
-    vert:  { f: r => dayVert(r), unit: 'ft', fmt: n0, goal: 0, word: 'vert ft' },
-    sleep: { f: r => g(r, 'sleep'), unit: 'h', fmt: hm, goal: 56, word: 'sleep hours', avg: true },
+    hours: { f: r => dayMin(r) / 60, unit: 'h', fmt: n1, word: 'hours' },
+    run:   { f: r => g(r, 'run_mi'), unit: 'mi', fmt: n1, word: 'run miles' },
+    fc:    { f: flatConv, unit: 'mi', fmt: n1, word: 'flat-conv. miles' },
+    vert:  { f: r => dayVert(r), unit: 'ft', fmt: n0, word: 'vert ft' },
+    sleep: { f: r => g(r, 'sleep'), unit: 'h', fmt: hm, word: 'sleep hours', avg: true },
   }[state.rollMetric];
   const v = all.map(M.f);
   // sleep: rolling 7-night average per night (skips unlogged nights); everything else: rolling 7-day total
@@ -579,7 +578,6 @@ function renderRolling() {
   });
   const i0 = all.findIndex(r => D(r.date) >= s);
   const days = all.slice(i0), a7 = r7.slice(i0), a28 = r28.slice(i0), raw = v.slice(i0);
-  const goal = M.avg ? 8 : M.goal;
   const lbl7 = M.avg ? '7-night avg' : 'Rolling 7-day total', lbl28 = M.avg ? '28-night avg' : '28-day avg per week';
   $('#rollLegend').innerHTML = legendHTML([{ label: lbl7, color: SP.run.color, kind: 'line' }, { label: lbl28, color: SP.bc.color, kind: 'line' }]);
   lines(host, {
@@ -590,7 +588,7 @@ function renderRolling() {
     ],
     fmt: M.fmt, yfmt: v => M.unit === 'ft' && v >= 1000 ? v / 1000 + 'k' : (M.avg ? v + 'h' : v),
     yMin: M.avg ? undefined : 0,
-    refs: goal ? [{ y: goal, label: M.avg ? '8h' : `goal ${goal}` }] : [],
+    refs: M.avg ? [{ y: 8, label: '8h' }] : [],
     tipTitle: i => `7 days ending ${fmtDL(D(days[i].date))}`,
     tipExtra: i => {
       const j = i0 + i; let h = tipRow('That day', raw[i] ? M.fmt(raw[i]) + ' ' + M.unit : 'rest');
@@ -619,19 +617,16 @@ function renderRolling() {
 function renderThisWeek() {
   const ws = monday(today()); const m = byDate();
   const wd = [...Array(7)].map((_, i) => { const d = addDays(ws, i); return { d, r: m.get(iso(d)) || { date: iso(d) } }; });
-  const hrs = sum(wd.map(x => dayMin(x.r) / 60)), goal = +state.goals.hours || 10;
-  const runMi = sum(wd.map(x => g(x.r, 'run_mi'))), gm = +state.goals.miles || 0;
+  const all = SPORTS.map(s => s.key);
+  const hrs = sum(wd.map(x => dayMin(x.r, all) / 60));
+  const mi = sum(wd.map(x => dayMi(x.r, all))), vt = sum(wd.map(x => dayVert(x.r, all)));
+  const fc = sum(wd.map(x => flatConv(x.r)));
   $('#weekLabel').textContent = `${fmtD(ws)} – ${fmtD(addDays(ws, 6))}`;
-  const R = 62, c = 2 * Math.PI * R, p = Math.min(1, hrs / goal);
-  const R2 = 48, c2 = 2 * Math.PI * R2, p2 = gm ? Math.min(1, runMi / gm) : 0;
-  $('#weekRing').innerHTML = `<svg width="170" height="170" viewBox="0 0 170 170">
-    <circle cx="85" cy="85" r="${R}" fill="none" stroke="#2c2c2a" stroke-width="12"/>
-    <circle cx="85" cy="85" r="${R}" fill="none" stroke="${SP.run.color}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${c * p} ${c}" transform="rotate(-90 85 85)"/>
-    ${gm ? `<circle cx="85" cy="85" r="${R2}" fill="none" stroke="#2c2c2a" stroke-width="8"/>
-    <circle cx="85" cy="85" r="${R2}" fill="none" stroke="${SP.nordic.color}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${c2 * p2} ${c2}" transform="rotate(-90 85 85)"/>` : ''}
-    <text x="85" y="88" text-anchor="middle" style="font:700 26px var(--sans);fill:#f0efec">${n1(hrs)}h</text>
-    
-  </svg>${gm ? `<div class="ring-cap"><span><i style="background:${SP.run.color}"></i>${n1(hrs)} / ${goal} h</span><span><i style="background:${SP.nordic.color}"></i>${n1(runMi)} / ${gm} run mi</span></div>` : ''}`;
+  const per = SPORTS.map(s => ({ s, h: sum(wd.map(x => sportMin(x.r, s.key) / 60)) })).filter(x => x.h > 0);
+  $('#weekRing').innerHTML = `<div class="wk-big">${n1(hrs)}<small>h</small></div>
+    <div class="wk-sub">${n1(mi)} mi · ${n0(vt)} ft${fc ? ` · ${n1(fc)} flat-conv.` : ''}</div>
+    <div class="wk-split">${per.map(x => `<div title="${x.s.label}" style="flex:${x.h};background:${x.s.color}"></div>`).join('') || '<div style="flex:1;background:#2c2c2a"></div>'}</div>
+    <div class="ring-cap">${per.map(x => `<span><i style="background:${x.s.color}"></i>${x.s.label} ${n1(x.h)}h</span>`).join('') || '<span>no training yet</span>'}</div>`;
   const maxD = Math.max(1, ...wd.map(x => dayMin(x.r, SPORTS.map(s => s.key))));
   const td = todayIso();
   $('#weekDays').innerHTML = wd.map(x => {
@@ -670,7 +665,6 @@ function renderRun() {
     fmt: n1, tipTitle: i => `Week of ${fmtD(wk[i].start)}`,
     top: i => wkFc[i] > 0.1 && wk.length <= 30 ? n1(wkFc[i]) : '',
     tipExtra: i => tipRow('Vert ft', n0(wVe[i] * FT_PER_FLAT_MI)),
-    refs: state.goals.miles ? [{ y: +state.goals.miles, label: `goal ${state.goals.miles} mi` }] : [],
   });
   bars($('#c-runVert'), {
     labels: wk.map(w => fmtD(w.start)),
@@ -892,7 +886,6 @@ function fillEntry(date) {
   const sl = g(r, 'sleep');
   $('#eSleepH').value = sl ? Math.floor(Math.round(sl * 60) / 60) : '';
   $('#eSleepM').value = sl ? Math.round(sl * 60) % 60 : '';
-  $('#eOther').value = g(r, 'other_min') || '';
   $('#eSessions').value = g(r, 'sessions') || '';
   $('#eWorkout').value = g(r, 'workout') || '';
   $('#eTl').value = g(r, 'tl') || '';
@@ -907,7 +900,7 @@ function readEntry() {
   $$('#sportFields input').forEach(i => { const v = parseFloat(i.value); if (v) rec[i.dataset.f] = v; });
   const sh = parseFloat($('#eSleepH').value) || 0, sm = parseFloat($('#eSleepM').value) || 0;
   if (sh || sm) rec.sleep = +(sh + sm / 60).toFixed(3);
-  const map = { other_min: '#eOther', sessions: '#eSessions', workout: '#eWorkout', tl: '#eTl', rpf: '#eRpf' };
+  const map = { sessions: '#eSessions', workout: '#eWorkout', tl: '#eTl', rpf: '#eRpf' };
   for (const k in map) { const v = parseFloat($(map[k]).value); if (v) rec[k] = v; }
   const n = $('#eNotes').value.trim(); if (n) rec.notes = n;
   return rec;
@@ -1004,8 +997,8 @@ async function ghPull() {
 function renderAllTable() {
   const rows = [...state.days].reverse();
   const cell = (v, f = n1) => v ? `<td>${f(v)}</td>` : '<td class="z">·</td>';
-  $('#allTable').innerHTML = `<table><thead><tr><th>Date</th><th>Sleep</th>${SPORTS.filter(s => s.dist).map(s => `<th>${s.label} min</th><th>mi</th><th>vert</th>`).join('')}<th>Other</th><th>TL</th><th>RPF</th><th class="note">Notes</th></tr></thead><tbody>${
-    rows.map(r => `<tr data-date="${r.date}"><td>${r.date}</td>${cell(g(r, 'sleep'), hm)}${SPORTS.filter(s => s.dist).map(s => cell(g(r, s.key + '_min'), n0) + cell(g(r, s.key + '_mi')) + cell(g(r, s.key + '_vert'), n0)).join('')}${cell(g(r, 'other_min'), n0)}${cell(g(r, 'tl'), n0)}${cell(g(r, 'rpf'), n0)}<td class="note">${esc(r.notes || '')}</td></tr>`).join('')
+  $('#allTable').innerHTML = `<table><thead><tr><th>Date</th><th>Sleep</th>${SPORTS.filter(s => s.dist).map(s => `<th>${s.label} min</th><th>mi</th><th>vert</th>`).join('')}<th>TL</th><th>RPF</th><th class="note">Notes</th></tr></thead><tbody>${
+    rows.map(r => `<tr data-date="${r.date}"><td>${r.date}</td>${cell(g(r, 'sleep'), hm)}${SPORTS.filter(s => s.dist).map(s => cell(g(r, s.key + '_min'), n0) + cell(g(r, s.key + '_mi')) + cell(g(r, s.key + '_vert'), n0)).join('')}${cell(g(r, 'tl'), n0)}${cell(g(r, 'rpf'), n0)}<td class="note">${esc(r.notes || '')}</td></tr>`).join('')
   }</tbody></table>`;
   $$('#allTable tbody tr').forEach(tr => tr.onclick = () => openEntry(tr.dataset.date));
 }
@@ -1078,8 +1071,6 @@ function bind() {
   }
   for (const k of ['owner', 'repo', 'branch', 'path', 'token']) $('#gh' + k[0].toUpperCase() + k.slice(1)).value = state.gh[k] || '';
   $('#ghPush').onclick = ghPush; $('#ghPull').onclick = ghPull;
-  $('#goalHours').value = state.goals.hours; $('#goalMiles').value = state.goals.miles;
-  $('#goalHours').onchange = $('#goalMiles').onchange = () => { state.goals = { hours: +$('#goalHours').value || 10, miles: +$('#goalMiles').value || 0 }; writeLS(LS.goals, state.goals); toast('Goals saved'); };
 
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => (RENDER[state.tab] || (() => {}))(), 150); });
   addEventListener('keydown', e => { if (e.key === 'n' && !/input|textarea|select/i.test(document.activeElement.tagName)) { fillEntry(todayIso()); switchTab('entry'); } });

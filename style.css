@@ -75,8 +75,7 @@ main{padding:0 28px 40px;max-width:1500px;margin:0 auto}
 .kpi .v small{font-size:13px;color:var(--text-secondary);font-weight:500;margin-left:3px;letter-spacing:0}
 .kpi .d{font-size:12px;color:var(--text-secondary);margin-top:4px;font-variant-numeric:tabular-nums}
 .kpi .d .up{color:var(--good)} .kpi .d .down{color:var(--crit)}
-.kpi svg.spark{position:absolute;right:12px;top:30px;opacity:.9}
-@media (max-width:760px){.kpi svg.spark{display:none}}
+.kpi svg.spark{display:block;width:100%;margin-top:8px;opacity:.9}
 
 /* legend */
 .legend{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 6px;font-size:12px;color:var(--text-secondary)}
@@ -220,3 +219,8 @@ input[type=range]{padding:0;accent-color:var(--accent);background:none;border:0}
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--surface-3);border:1px solid #4a4a45;padding:10px 16px;border-radius:10px;
   opacity:0;transition:.2s;z-index:200;font-weight:600;font-size:13px;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+.wk-big{font:700 46px/1 var(--sans);letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-top:8px}
+.wk-big small{font-size:18px;color:var(--text-secondary);font-weight:500;margin-left:3px}
+.wk-sub{color:var(--text-secondary);font-size:12.5px;margin:6px 0 12px;font-variant-numeric:tabular-nums;text-align:center}
+.wk-split{display:flex;gap:2px;height:10px;width:100%;border-radius:5px;overflow:hidden;margin-bottom:10px}
