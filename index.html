@@ -71,7 +71,7 @@
       <div class="roll-stats" id="rollStats"></div>
     </div>
     <div class="card">
-      <div class="card-h"><h2>Every day</h2><span class="sub">training hours · darker = bigger day</span></div>
+      <div class="card-h"><h2>Every day</h2><span class="sub">training hours · lighter = bigger day</span></div>
       <div class="chart heat" id="c-heat"></div>
     </div>
     <div class="grid g-1-1-1">
@@ -252,7 +252,6 @@
         <fieldset>
           <legend>Extras</legend>
           <div class="row">
-            <label>Other min<input type="number" id="eOther" min="0" step="1" inputmode="numeric"></label>
             <label>Sessions<input type="number" id="eSessions" min="0" step="1" inputmode="numeric"></label>
           </div>
           <div class="row">
@@ -311,11 +310,6 @@
           <div class="entry-actions">
             <button class="btn danger" id="resetRepo">Discard local edits · reload repo data</button>
           </div>
-        </div>
-        <div class="card-h" style="margin-top:18px"><h2>Goals</h2></div>
-        <div class="form-grid">
-          <label>Weekly hours goal<input id="goalHours" type="number" min="1" step="0.5"></label>
-          <label>Weekly run miles goal<input id="goalMiles" type="number" min="1" step="1"></label>
         </div>
       </div>
     </div>
